@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query } from '@nestj
 import { CoffeesService } from './coffees.service';
 import { CreateCoffeeDto } from './dto/create-coffee.dto';
 import { UpdateCoffeeDto } from './dto/update-coffee.dto';
+import { PaginationQueryDto } from 'src/common/dto/pagination-query.dto';
 
 @Controller('coffees')
 export class CoffeesController {
@@ -10,9 +11,8 @@ export class CoffeesController {
     ) {}
 
     @Get()
-    findAll(@Query() paginationQuery){
-        const { limit, offset } = paginationQuery;
-        return this.coffeesService.findAll();
+    findAll(@Query() paginationQuery: PaginationQueryDto){
+        return this.coffeesService.findAll(paginationQuery);
     }
 
     @Get(':id')
@@ -21,12 +21,12 @@ export class CoffeesController {
     }
 
     @Post()
-    create(@Body() body: CreateCoffeeDto){
+    create(@Body() body: CreateCoffeeDto) {
         return this.coffeesService.create(body);
     }
 
     @Patch(':id')
-    update(@Param('id') id: string, @Body() body: UpdateCoffeeDto){
+    update(@Param('id') id: string, @Body() body: UpdateCoffeeDto) {
         return this.coffeesService.update(id, body);
     }
 
