@@ -6,4 +6,4 @@ import { CoffeesService } from 'src/coffees/coffees.service';
   controllers: [CoffeesController],
   providers: [CoffeesService],
 })
-export class CoffeeModule {}
+export class CoffeesModule {}
