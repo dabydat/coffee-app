@@ -1,6 +1,7 @@
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ApiKeyGuard } from './guards/api-key/api-key.guard';
+import { LoggingMiddleware } from './middlewares/logging/logging.middleware';
 
 @Module({
   imports: [ConfigModule],
@@ -13,4 +14,8 @@ import { ApiKeyGuard } from './guards/api-key/api-key.guard';
   ],
   exports: [],
 })
-export class CommonModule {}
+export class CommonModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggingMiddleware).forRoutes('*');
+  }
+}

@@ -1,12 +1,12 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CoffeesController } from 'src/coffees/coffees.controller';
-import { CoffeesService } from 'src/coffees/coffees.service';
 import { CoffeeEntity } from './entities/coffee.entity';
 import { FlavorEntity } from './entities/flavor.entity.ts';
-import { EventEntity } from 'src/events/entities/event.entity.ts/event.entity.ts';
 import { ConfigModule } from '@nestjs/config';
 import coffeesConfig from './config/coffees.config';
+import { CoffeesController } from './coffees.controller';
+import { CoffeesService } from './coffees.service';
+import { EventEntity } from '../events/entities/event.entity';
 
 @Module({
   imports: [
